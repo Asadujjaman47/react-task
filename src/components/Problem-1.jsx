@@ -26,6 +26,19 @@ const Problem1 = () => {
 
   console.log(tasks);
 
+  const filteredTasks = () => {
+    switch (show) {
+      case "all":
+        return tasks;
+      case "active":
+        return tasks.filter((task) => task.status === "active");
+      case "completed":
+        return tasks.filter((task) => task.status === "completed");
+      default:
+        return tasks;
+    }
+  };
+
   return (
     <div className="container">
       <div className="row justify-content-center mt-5">
@@ -101,7 +114,14 @@ const Problem1 = () => {
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {filteredTasks().map((task, index) => (
+                <tr key={index}>
+                  <td>{task.name}</td>
+                  <td>{task.status}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
