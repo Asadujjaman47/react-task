@@ -5,6 +5,7 @@ import { BiSearch } from "react-icons/bi";
 const ModalA = () => {
   const navigate = useNavigate();
   const [allContacts, setAllContacts] = useState([]);
+  const [isEven, setIsEven] = useState(false);
 
   //contact.mediusware.com/api-doc/
   https: useEffect(() => {
@@ -13,7 +14,17 @@ const ModalA = () => {
       .then((data) => setAllContacts(data.results));
   }, []);
 
-  console.log(allContacts);
+  // console.log(allContacts);
+
+  const evenContacts = allContacts.filter((contact) => contact.id % 2 === 0);
+
+  const ContactRow = ({ contact }) => (
+    <tr key={contact.id}>
+      <td>{contact.id}</td>
+      <td>{contact.country.name}</td>
+      <td>{contact.phone}</td>
+    </tr>
+  );
 
   https: return (
     <div style={{ backdropFilter: "blur(50px)" }}>
@@ -89,15 +100,30 @@ const ModalA = () => {
             </tr>
           </thead>
           <tbody>
-            {allContacts.map((contact) => (
+            {/* {allContacts.map((contact) => (
               <tr key={contact.id}>
                 <td>{contact.id}</td>
                 <td>{contact.country.name}</td>
                 <td>{contact.phone}</td>
               </tr>
-            ))}
+            ))} */}
+
+            {isEven
+              ? evenContacts.map((contact) => <ContactRow contact={contact} />)
+              : allContacts.map((contact) => <ContactRow contact={contact} />)}
           </tbody>
         </table>
+        <div className="fw-semibold fs-5 text-white">
+          <label htmlFor="even">
+            <input
+              type="checkbox"
+              name="even"
+              id="even"
+              onChange={() => setIsEven(!isEven)}
+            />{" "}
+            Only even
+          </label>
+        </div>
       </div>
     </div>
   );
