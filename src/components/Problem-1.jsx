@@ -26,10 +26,25 @@ const Problem1 = () => {
 
   console.log(tasks);
 
+  const sortedTasks = tasks.sort((a, b) => {
+    // sort active and compled
+    // a.status > b.status ? 1 : b.status > a.status ? -1 : 0
+
+    // sort other tasks
+    const statusOrder = {
+      active: 1,
+      completed: 2,
+      archive: 3,
+      pending: 4,
+    };
+
+    return statusOrder[a.status] - statusOrder[b.status];
+  });
+
   const filteredTasks = () => {
     switch (show) {
       case "all":
-        return tasks;
+        return sortedTasks;
       case "active":
         return tasks.filter((task) => task.status === "active");
       case "completed":
