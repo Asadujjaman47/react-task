@@ -4,8 +4,18 @@ import { BiSearch } from "react-icons/bi";
 
 const ModalA = () => {
   const navigate = useNavigate();
+  const [allContacts, setAllContacts] = useState([]);
 
-  return (
+  //contact.mediusware.com/api-doc/
+  https: useEffect(() => {
+    fetch("https://contact.mediusware.com/api/contacts/")
+      .then((res) => res.json())
+      .then((data) => setAllContacts(data.results));
+  }, []);
+
+  console.log(allContacts);
+
+  https: return (
     <div style={{ backdropFilter: "blur(50px)" }}>
       <div
         style={{

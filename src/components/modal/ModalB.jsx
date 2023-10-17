@@ -4,6 +4,16 @@ import { BiSearch } from "react-icons/bi";
 
 const ModalB = () => {
   const navigate = useNavigate();
+  const [usContacts, setUsContacts] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      "https://contact.mediusware.com/api/country-contacts/United%20States/"
+    )
+      .then((res) => res.json())
+      .then((data) => setUsContacts(data.results));
+  }, []);
+  console.log(usContacts);
 
   return (
     <div style={{ backdropFilter: "blur(50px)" }}>
