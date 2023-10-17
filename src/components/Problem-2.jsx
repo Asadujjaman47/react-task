@@ -4,12 +4,12 @@ import { Outlet, useNavigate } from "react-router-dom";
 const Problem2 = () => {
   const navigate = useNavigate();
 
-  const handleModalA = () => {
-    navigate("/problem-2/modal/modalA");
-  };
-
-  const handleModalB = () => {
-    navigate("/problem-2/modal/modalB");
+  const handleModal = (name) => {
+    if (name === "all") {
+      navigate("/problem-2/modal/modalA");
+    } else if (name === "us") {
+      navigate("/problem-2/modal/modalB");
+    }
   };
 
   return (
@@ -23,14 +23,14 @@ const Problem2 = () => {
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
-            onClick={handleModalA}
+            onClick={() => handleModal("all")}
           >
             All Contacts
           </button>
           <button
             className="btn btn-lg btn-outline-warning"
             type="button"
-            onClick={handleModalB}
+            onClick={() => handleModal("us")}
           >
             US Contacts
           </button>
