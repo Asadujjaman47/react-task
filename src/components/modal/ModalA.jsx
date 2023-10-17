@@ -80,6 +80,24 @@ const ModalA = () => {
             </span>
           </div>
         </div>
+        <table className="table text-center text-white">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Country Name</th>
+              <th scope="col">Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allContacts.map((contact) => (
+              <tr key={contact.id}>
+                <td>{contact.id}</td>
+                <td>{contact.country.name}</td>
+                <td>{contact.phone}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
